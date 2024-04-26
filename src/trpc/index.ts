@@ -26,6 +26,7 @@ export const appRouter = router({
       const parsedQueryOpts: Record<string, { equals: string }> = {};
 
       Object.entries(queryOpts).forEach(([key, value]) => {
+        console.log("Here is the key:", key);
         parsedQueryOpts[key] = {
           equals: value,
         };

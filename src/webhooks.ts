@@ -2,7 +2,7 @@ import express from "express";
 import { stripe } from "./lib/stripe";
 import type Stripe from "stripe";
 import { getPayloadClient } from "./get-payload";
-import {Resend} from 'resend'
+import { Resend } from "resend";
 import { Product } from "./payload-types";
 import { ReceiptEmailHtml } from "./components/emails/ReceiptEmail";
 import { WebhookRequest } from "./server";
@@ -25,6 +25,7 @@ export const stripeWebhookHandler = async (
       process.env.STRIPE_WEBHOOK_SECRET || ""
     );
   } catch (err) {
+    console.log("Here is the err:", err);
     return res
       .status(400)
       .send(
@@ -95,6 +96,7 @@ export const stripeWebhookHandler = async (
       });
       res.status(200).json({ data });
     } catch (error) {
+      console.log("Here is the error:", error);
       res.status(500).json({ error });
     }
   }
